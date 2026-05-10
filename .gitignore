@@ -1,0 +1,10 @@
+vendor/
+runtime/cache/*
+runtime/logs/*
+web/assets/*
+.env.local
+*.log
+composer.phar
+edusec-frontend/node_modules/
+edusec-frontend/dist/
+.git/

@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: edusec_web
+    ports:
+      - "8081:80"
+    volumes:
+      - .:/var/www/html
+      - ./edusec-frontend/dist:/var/www/html/app
+      - composer_cache:/root/.composer
+    environment:
+      - DB_HOST=db
+      - DB_NAME=edusec
+      - DB_USER=edusec_user
+      - DB_PASS=edusec_pass
+      - PHP_TIMEZONE=Asia/Kolkata
+    depends_on:
+      - db
+    networks:
+      - edusec_network
+    restart: unless-stopped
+
+  db:
+    image: mariadb:10.5
+    container_name: edusec_db
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_password
+      - MYSQL_DATABASE=edusec
+      - MYSQL_USER=edusec_user
+      - MYSQL_PASSWORD=edusec_pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - edusec_network
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+    driver: local
+  composer_cache:
+    driver: local
+
+networks:
+  edusec_network:
+    driver: bridge

@@ -1,0 +1,47 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# IDE files
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Runtime directories (will be created by container)
+runtime/*
+web/assets/*
+!runtime/.gitkeep
+!web/assets/.gitkeep
+
+# Composer
+vendor/
+composer.phar
+
+# Environment files
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Docker files
+docker-compose.override.yml
+
+# Documentation
+README.md
+DOCKER_README.md
+
+# Compressed files
+*.zip
+*.tar.gz
+
+# Frontend build directories
+edusec-frontend/node_modules/
+edusec-frontend/dist/
